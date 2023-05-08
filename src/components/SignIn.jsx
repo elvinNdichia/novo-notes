@@ -35,7 +35,7 @@ export function SignIn({ signIn }) {
               viewBox="0 0 24 24"
               fill="none"
             >
-              <g clip-path="url(#clip0_216_206)">
+              <g clipPath="url(#clip0_216_206)">
                 <path
                   d="M8 2V22H4V18H2V16H4V13H2V11H4V8H2V6H4V2H8ZM20.005 2C21.107 2 22 2.898 22 3.99V20.01C22 21.109 21.107 22 20.005 22H10V2H20.005Z"
                   fill="#FBC103"
