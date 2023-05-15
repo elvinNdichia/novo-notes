@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonWithExitAnimation from "../components/ButtonWithExitAnimation";
 
 function Contact() {
   return (
@@ -8,6 +9,7 @@ function Contact() {
         Aliquam iaculis a nisi sed ornare. Sed venenatis tellus vel consequat
         congue. In bibendum vestibulum orci et feugiat.
       </p>
+      <ButtonWithExitAnimation />
     </>
   );
 }

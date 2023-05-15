@@ -9,20 +9,33 @@
 }
 
 .page-enter {
+  /* 
   transform: scale(1.1);
+  */
 }
 
 .page-enter-active {
-  transform: scale(1);
+  /* transform: scale(1);
   transition: opacity 300ms, transform 300ms;
+  */
 }
 
 .page-exit {
-  transform: scale(1);
+  /* transform: scale(1)
+  */
+}
+.routing-animated {
+  position: relative;
+  transition: top 300ms;
+  top: 0;
+}
+.page-exit .routing-animated {
+  top: -30px;
 }
 
 .page-exit-active {
-  opacity: 0;
+  /*  opacity: 0;
   transform: scale(0.9);
   transition: opacity 300ms, transform 300ms;
+  */
 }
