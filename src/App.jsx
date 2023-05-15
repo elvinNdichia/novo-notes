@@ -5,6 +5,7 @@ import { auth, provider } from "./firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { db } from "./firebase-config";
 import React from "react";
+
 import {
   collection,
   addDoc,

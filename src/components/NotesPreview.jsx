@@ -4,7 +4,7 @@ import { Cards } from "./Card";
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
 
-export function NotesPreview({ isRightOpen }) {
+export function NotesPreview({ isRightOpen, navBar }) {
   return (
     <Box
       sx={{
@@ -22,6 +22,7 @@ export function NotesPreview({ isRightOpen }) {
     >
       <Box>
         <Header />
+        {navBar}
         {/* search bar */}
         <SearchBar />
       </Box>
