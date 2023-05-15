@@ -4,6 +4,7 @@ import { SignIn } from "./components/SignIn";
 import { auth, provider } from "./firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { db } from "./firebase-config";
+import React from "react";
 import {
   collection,
   addDoc,
@@ -14,6 +15,9 @@ import {
   query,
   where,
 } from "firebase/firestore";
+
+// User Context
+const UserContext = React.createContext();
 
 function App() {
   const [userData, setUserData] = useState({
@@ -47,7 +51,14 @@ function App() {
 
   console.log(userData);
 
-  return <>{userData.email ? <Root /> : <SignIn signIn={signIn} />}</>;
+  return (
+    <>
+      <UserContext.Provider value={userData}>
+        {userData.email ? <Root /> : <SignIn signIn={signIn} />}
+      </UserContext.Provider>
+    </>
+  );
 }
 
+export { UserContext };
 export default App;
