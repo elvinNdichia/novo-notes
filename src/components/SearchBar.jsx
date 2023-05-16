@@ -1,8 +1,9 @@
+import React from "react";
 import { Box } from "@mui/material";
-import { useState } from "react";
+import { BrainContext } from "../helpers/BrainContext";
 
 export default function SearchBar() {
-  const [value, setValue] = useState("");
+  const { search, setSearch } = React.useContext(BrainContext);
 
   return (
     <Box
@@ -52,9 +53,9 @@ export default function SearchBar() {
           color: "#6B6B6B",
         }}
         className="input-type"
-        value={value}
+        value={search}
         onChange={(e) => {
-          setValue(e.target.value);
+          setSearch(e.target.value);
         }}
       />
       <Box
@@ -70,10 +71,10 @@ export default function SearchBar() {
             "&:active": {
               background: "rgba(0, 0, 0, .12)",
             },
-            display: value === "" ? "none" : "flex",
+            display: search === "" ? "none" : "flex",
           }}
           onClick={() => {
-            setValue("");
+            setSearch("");
           }}
         >
           <svg

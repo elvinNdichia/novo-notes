@@ -4,7 +4,6 @@ import React from "react";
 
 export function Header() {
   const user = React.useContext(UserContext);
-  console.log("From context: ", user);
 
   return (
     <Box

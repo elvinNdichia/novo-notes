@@ -5,6 +5,7 @@ import { auth, provider } from "./firebase-config";
 import { signInWithPopup } from "firebase/auth";
 import { db } from "./firebase-config";
 import React from "react";
+import { BrainProvider } from "./helpers/BrainContext";
 import {
   collection,
   addDoc,
@@ -54,7 +55,9 @@ function App() {
   return (
     <>
       <UserContext.Provider value={userData}>
-        {userData.email ? <Root /> : <SignIn signIn={signIn} />}
+        <BrainProvider>
+          {userData.email ? <Root /> : <SignIn signIn={signIn} />}
+        </BrainProvider>
       </UserContext.Provider>
     </>
   );
