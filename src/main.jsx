@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "notes/new", element: <>This is the Child or the / root</> },
+      { path: "notes/new", element: <>Create New note</> },
       { path: "note/:id", element: <Note /> },
     ],
   },

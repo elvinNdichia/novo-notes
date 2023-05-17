@@ -1,12 +1,14 @@
 import { Box } from "@mui/system";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { NotesPreview } from "./NotesPreview";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
 export function Root() {
-  const location = useLocation();
-  const isRightOpen = true;
+  const { id: currentNoteId } = useParams();
+  const currentPath = window.location.pathname;
+
+  const isRightOpen = currentNoteId || currentPath === "/notes/new";
 
   return (
     <AnimatePresence mode="wait">
