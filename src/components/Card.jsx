@@ -2,19 +2,25 @@ import React, { useEffect } from "react";
 import { BrainContext } from "../helpers/BrainContext";
 import { Box, CircularProgress } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function Card({ id, title, body, time }) {
   const navigate = useNavigate();
+  const { id: currentNoteId } = useParams();
 
   return (
     <motion.div
       style={{
         padding: "17px 16px 13px 12px",
         background:
-          "linear-gradient(180deg, rgba(5, 189, 214, 0.86) 0%, #4C66C0 100%)",
+          id === currentNoteId
+            ? "linear-gradient(180deg, rgba(5, 189, 214, 0.86) 0%, #4C66C0 100%)"
+            : "#E8EBF6",
         borderRadius: "8px",
-        color: "rgba(255, 255, 255, .98)",
+        color:
+          id === currentNoteId
+            ? "rgba(255, 255, 255, .98)"
+            : "rgba(0, 0, 0, 0.98)",
         cursor: "pointer",
       }}
       layout
@@ -30,7 +36,13 @@ export function Card({ id, title, body, time }) {
       <p>...</p>
       <p
         className="card-time"
-        style={{ color: "rgba(255, 255, 255, .6)", marginTop: "20px" }}
+        style={{
+          color:
+            id === currentNoteId
+              ? "rgba(255, 255, 255, .6)"
+              : "rgba(0, 0, 0, .6)",
+          marginTop: "20px",
+        }}
       >
         {formatDate(time)}
       </p>
