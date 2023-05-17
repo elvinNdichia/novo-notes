@@ -1,17 +1,26 @@
 import React, { useEffect } from "react";
 import { BrainContext } from "../helpers/BrainContext";
 import { Box, CircularProgress } from "@mui/material";
+import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-export function Card({ title, body, time }) {
+export function Card({ id, title, body, time }) {
+  const navigate = useNavigate();
+
   return (
-    <Box
-      sx={{
+    <motion.div
+      style={{
         padding: "17px 16px 13px 12px",
         background:
           "linear-gradient(180deg, rgba(5, 189, 214, 0.86) 0%, #4C66C0 100%)",
         borderRadius: "8px",
         color: "rgba(255, 255, 255, .98)",
         cursor: "pointer",
+      }}
+      layout
+      transition={{ duration: 0.3 }}
+      onClick={() => {
+        navigate("/notes/" + id);
       }}
     >
       <h2 className="card-title">{title}</h2>
@@ -25,7 +34,7 @@ export function Card({ title, body, time }) {
       >
         {formatDate(time)}
       </p>
-    </Box>
+    </motion.div>
   );
 }
 
@@ -117,16 +126,19 @@ export function Cards() {
         gap: "1frem",
       }}
     >
-      {searchedNotes.map((note) => {
-        return (
-          <Card
-            key={note.id}
-            title={note.title}
-            time={note.time}
-            body={note.body}
-          />
-        );
-      })}
+      <AnimatePresence>
+        {searchedNotes.map((note) => {
+          return (
+            <Card
+              id={note.id}
+              key={note.id}
+              title={note.title}
+              time={note.time}
+              body={note.body}
+            />
+          );
+        })}
+      </AnimatePresence>
     </Box>
   );
 }
