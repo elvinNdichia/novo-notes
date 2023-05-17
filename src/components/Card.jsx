@@ -20,7 +20,7 @@ export function Card({ id, title, body, time }) {
       layout
       transition={{ duration: 0.3 }}
       onClick={() => {
-        navigate("/notes/" + id);
+        navigate("/note/" + id);
       }}
     >
       <h2 className="card-title">{title}</h2>

@@ -4,6 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "./components/ErrorPage.jsx";
+import Note from "./components/Note.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: "notes/new", element: <>This is the Child or the / root</> },
+      { path: "note/:id", element: <Note /> },
     ],
   },
 ]);
