@@ -88,8 +88,6 @@ export function Cards() {
     getNotes();
   }, []);
 
-  console.log("Here are the notes: ", notes);
-
   if (loading) {
     return (
       <Box
@@ -139,7 +137,7 @@ export function Cards() {
       }}
     >
       <AnimatePresence>
-        {searchedNotes.map((note) => {
+        {sortObjectsByTimeDescending(searchedNotes).map((note) => {
           return (
             <Card
               id={note.id}
@@ -185,6 +183,10 @@ function searchObjectsByQuery(objects, queryString) {
   });
 
   return results;
+}
+
+function sortObjectsByTimeDescending(array) {
+  return array.sort((a, b) => b.time.toMillis() - a.time.toMillis());
 }
 
 // The svg
