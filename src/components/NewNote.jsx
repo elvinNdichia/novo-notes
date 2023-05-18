@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { NewActions } from "./NewActions";
 
 export function NewNote() {

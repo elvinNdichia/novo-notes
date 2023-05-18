@@ -7,6 +7,7 @@ import { ErrorPage } from "./components/ErrorPage.jsx";
 import Note from "./components/Note.jsx";
 import NothingSelected from "./components/NothingSelected.jsx";
 import { NewNote } from "./components/NewNote.jsx";
+import { AnimatePresence } from "framer-motion";
 
 const router = createBrowserRouter([
   {
