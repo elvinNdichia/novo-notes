@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ErrorPage } from "./components/ErrorPage.jsx";
 import Note from "./components/Note.jsx";
 import NothingSelected from "./components/NothingSelected.jsx";
+import { NewNote } from "./components/NewNote.jsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "notes/new", element: <>Create New note</> },
+      { path: "notes/new", element: <NewNote /> },
       { path: "note/:id", element: <Note /> },
       { index: true, element: <NothingSelected /> },
     ],
