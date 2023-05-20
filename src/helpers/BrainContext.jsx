@@ -56,19 +56,27 @@ function BrainProvider({ children }) {
         body,
         time: serverTimestamp(),
       });
-      console.log("Done adding");
     } catch (err) {
       console.error("Error with adding the todo", err);
     }
   };
 
-  //++++++ DELETE note +++++++++
+  //---- DELETE note -------
   const deleteNote = async (id) => {
     try {
-      const todoDoc = doc(notesCollectionRef, id);
-      deleteDoc(todoDoc);
+      const noteDoc = doc(notesCollectionRef, id);
+      await deleteDoc(noteDoc);
     } catch (err) {
       console.log("Error deleting: ", err);
+    }
+  };
+  //+++--- Create a new note +++---
+  const updateNote = async ({ title, body, id }) => {
+    try {
+      const noteDoc = doc(notesCollectionRef, id);
+      await updateDoc(noteDoc, { title, body });
+    } catch (err) {
+      console.error("Error with updating the todo", err);
     }
   };
 
@@ -82,6 +90,7 @@ function BrainProvider({ children }) {
         loading,
         submitNote,
         deleteNote,
+        updateNote,
       }}
     >
       {children}

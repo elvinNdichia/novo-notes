@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Note() {
   const { id } = useParams();
-  const { notes, submitNote, deleteNote } = React.useContext(BrainContext);
+  const { notes, updateNote, deleteNote } = React.useContext(BrainContext);
   const navigate = useNavigate();
 
   const note = notes.find((note) => note.id === id);
@@ -25,8 +25,7 @@ export default function Note() {
       navigate("/");
       return;
     }
-    const newNoteTitle = title === "" ? "Untitled Note" : title;
-    submitNote({ body, title: newNoteTitle });
+    updateNote({ id, body, title });
     navigate("/");
   };
 
