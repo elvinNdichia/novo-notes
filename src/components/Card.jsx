@@ -163,8 +163,11 @@ function getLimitedString(str) {
 }
 
 function formatDate(timestamp) {
-  const seconds = timestamp.seconds;
-  const date = new Date(seconds * 1000);
+  if (!timestamp) {
+    return null;
+  }
+
+  const date = timestamp.toDate();
   const options = { day: "numeric", month: "short", year: "numeric" };
   return date.toLocaleDateString("en-US", options);
 }
@@ -186,7 +189,20 @@ function searchObjectsByQuery(objects, queryString) {
 }
 
 function sortObjectsByTimeDescending(array) {
-  return array.sort((a, b) => b.time.toMillis() - a.time.toMillis());
+  return array.sort((a, b) => {
+    if (a.time && b.time) {
+      return b.time.toMillis() - a.time.toMillis();
+    } else {
+      // handle the case where a.time or b.time is null
+      if (!a.time && !b.time) {
+        return 0; // both timestamps are null, consider them equal
+      } else if (!a.time) {
+        return 1; // a.time is null, so consider a to be greater
+      } else {
+        return -1; // b.time is null, so consider b to be greater
+      }
+    }
+  });
 }
 
 // The svg

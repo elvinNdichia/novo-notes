@@ -62,9 +62,27 @@ function BrainProvider({ children }) {
     }
   };
 
+  //++++++ DELETE note +++++++++
+  const deleteNote = async (id) => {
+    try {
+      const todoDoc = doc(notesCollectionRef, id);
+      deleteDoc(todoDoc);
+    } catch (err) {
+      console.log("Error deleting: ", err);
+    }
+  };
+
   return (
     <BrainContext.Provider
-      value={{ notes, getNotes, search, setSearch, loading, submitNote }}
+      value={{
+        notes,
+        getNotes,
+        search,
+        setSearch,
+        loading,
+        submitNote,
+        deleteNote,
+      }}
     >
       {children}
     </BrainContext.Provider>

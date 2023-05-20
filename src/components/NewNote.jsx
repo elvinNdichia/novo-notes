@@ -20,13 +20,16 @@ export function NewNote() {
   const onDone = () => {
     if (title === "" && body === "") {
       navigate("/");
+      return;
     }
     const newNoteTitle = title === "" ? "Untitled Note" : title;
     submitNote({ body, title: newNoteTitle });
     navigate("/");
   };
 
-  const onDeleteOrExit = () => {};
+  const onDeleteOrExit = () => {
+    navigate("/");
+  };
 
   return (
     <>
