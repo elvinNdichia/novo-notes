@@ -6,11 +6,10 @@ import {
   AutoHeightTextareaBody,
   AutoHeightTextareaTitle,
 } from "./AutoHeightTextarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrainContext } from "../helpers/BrainContext";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
 export default function Note() {
   const { id } = useParams();
   const { notes, updateNote, deleteNote } = React.useContext(BrainContext);
@@ -19,6 +18,11 @@ export default function Note() {
   const note = notes.find((note) => note.id === id);
   const [title, setTitle] = useState(note.title);
   const [body, setBody] = useState(note.body);
+
+  useEffect(() => {
+    setTitle(note.title);
+    setBody(note.body);
+  }, [note]);
 
   const onDone = () => {
     if (title === "" && body === "") {

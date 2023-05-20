@@ -50,37 +50,6 @@ export function Card({ id, title, body, time }) {
   );
 }
 
-export function CardUnselected() {
-  return (
-    <Box
-      sx={{
-        padding: "17px 16px 13px 12px",
-        background: "rgba(76, 102, 192, .12)",
-        //background:
-        // "linear-gradient(180deg, rgba(5, 189, 214, 0.08) 0%, rgba(76, 102, 192, .24) 100%)",
-        borderRadius: "8px",
-        color: "rgba(0, 0, 0, .98)",
-        cursor: "pointer",
-
-        "&:active": {
-          background: "rgba(76, 102, 192, .16)",
-        },
-      }}
-    >
-      <h2 className="card-title">English</h2>
-      <div>
-        <p className="card-body">
-          The quick brown fox jumps over the lazy dog. The quick brown fox
-          jumps...
-        </p>
-      </div>
-      <p className="card-time" style={{ color: "rgba(0, 0, 0, .6)" }}>
-        16:30
-      </p>
-    </Box>
-  );
-}
-
 export function Cards() {
   const { notes, getNotes, loading, search } = React.useContext(BrainContext);
 
@@ -205,8 +174,37 @@ function sortObjectsByTimeDescending(array) {
   });
 }
 
-// The svg
+export function CardUnselected() {
+  return (
+    <Box
+      sx={{
+        padding: "17px 16px 13px 12px",
+        background: "rgba(76, 102, 192, .12)",
+        //background:
+        // "linear-gradient(180deg, rgba(5, 189, 214, 0.08) 0%, rgba(76, 102, 192, .24) 100%)",
+        borderRadius: "8px",
+        color: "rgba(0, 0, 0, .98)",
+        cursor: "pointer",
 
+        "&:active": {
+          background: "rgba(76, 102, 192, .16)",
+        },
+      }}
+    >
+      <h2 className="card-title">English</h2>
+      <div>
+        <p className="card-body">
+          The quick brown fox jumps over the lazy dog. The quick brown fox
+          jumps...
+        </p>
+      </div>
+      <p className="card-time" style={{ color: "rgba(0, 0, 0, .6)" }}>
+        16:30
+      </p>
+    </Box>
+  );
+}
+// The svg
 const nothingFoundSVG = (
   <svg
     xmlns="http://www.w3.org/2000/svg"

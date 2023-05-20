@@ -57,7 +57,7 @@ export function Root() {
             },
           }}
         >
-          <Outlet />
+          <Outlet key={location.pathname} />
         </Box>
       </Box>
     </div>
