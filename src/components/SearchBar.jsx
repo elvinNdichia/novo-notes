@@ -52,7 +52,7 @@ export default function SearchBar() {
           maxWidth: { xs: "200px", md: "100%" },
           color: "#6B6B6B",
         }}
-        autocomplete="off"
+        autoComplete="off"
         className="input-type"
         value={search}
         onChange={(e) => {

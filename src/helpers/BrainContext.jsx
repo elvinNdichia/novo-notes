@@ -9,6 +9,7 @@ import {
   updateDoc,
   onSnapshot,
   doc,
+  serverTimestamp,
   query,
   where,
 } from "firebase/firestore";
@@ -16,6 +17,7 @@ import {
 const BrainContext = React.createContext();
 
 function BrainProvider({ children }) {
+  const notesCollectionRef = collection(db, "novo-notes");
   const user = React.useContext(UserContext);
 
   const { uid } = user;
@@ -45,9 +47,24 @@ function BrainProvider({ children }) {
   // Here is where I store what is currently in the SearchBar
   const [search, setSearch] = useState("");
 
+  //++++++ Create a new note +++++++++
+  const submitNote = async ({ title, body }) => {
+    try {
+      await addDoc(notesCollectionRef, {
+        uid,
+        title,
+        body,
+        time: serverTimestamp(),
+      });
+      console.log("Done adding");
+    } catch (err) {
+      console.error("Error with adding the todo", err);
+    }
+  };
+
   return (
     <BrainContext.Provider
-      value={{ notes, getNotes, search, setSearch, loading }}
+      value={{ notes, getNotes, search, setSearch, loading, submitNote }}
     >
       {children}
     </BrainContext.Provider>

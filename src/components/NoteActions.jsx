@@ -1,12 +1,62 @@
 import { Box } from "@mui/system";
 import { motion, AnimatePresence } from "framer-motion";
-import { lazy } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 
-export function NoteActions() {
+export function DoneAction({ onDone }) {
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <motion.div
+      key="done"
+      initial={{
+        y: -30,
+      }}
+      animate={{ y: 0 }}
+      exit={{ y: -30 }}
+      transition={{ delay: 0.08 }}
+      onClick={onDone}
+    >
+      <Box
+        sx={{
+          width: "32px",
+          height: "32px",
+          background: "#EDECEC",
+          borderRadius: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          marginLeft: "15px",
+          ":active": {
+            background: "#E5E5E5",
+          },
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="28"
+          height="28"
+          viewBox="0 0 28 28"
+          fill="none"
+        >
+          <path
+            d="M11.1417 21L4.4917 14.35L6.1542 12.6875L11.1417 17.675L21.8459 6.97083L23.5084 8.63333L11.1417 21Z"
+            fill="#7C7C7C"
+          />
+        </svg>
+      </Box>
+    </motion.div>
+  );
+}
+
+export function DeleteAction({ onDeleteOrExit }) {
+  return (
+    <motion.div
+      key="done"
+      initial={{
+        y: -30,
+      }}
+      animate={{ y: 0 }}
+      exit={{ y: -30 }}
+      onClick={onDeleteOrExit}
+    >
       <Box sx={{ cursor: "pointer", "&:active": { opacity: ".87" } }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -21,45 +71,6 @@ export function NoteActions() {
           />
         </svg>
       </Box>
-      <motion.div
-        initial={{
-          y: -30,
-        }}
-        animate={{ y: 0 }}
-        exit={{ y: -30 }}
-      >
-        <Link to="/">
-          <Box
-            sx={{
-              width: "32px",
-              height: "32px",
-              background: "#EDECEC",
-              borderRadius: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              marginLeft: "15px",
-              ":active": {
-                background: "#E5E5E5",
-              },
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              viewBox="0 0 28 28"
-              fill="none"
-            >
-              <path
-                d="M11.1417 21L4.4917 14.35L6.1542 12.6875L11.1417 17.675L21.8459 6.97083L23.5084 8.63333L11.1417 21Z"
-                fill="#7C7C7C"
-              />
-            </svg>
-          </Box>
-        </Link>
-      </motion.div>
-    </div>
+    </motion.div>
   );
 }

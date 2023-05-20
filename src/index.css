@@ -71,6 +71,9 @@ body,
   font-size: 24px;
   line-height: 29px;
 }
+.note-title::placeholder {
+  color: #8d8888;
+}
 
 .note-body {
   font-family: "Inter";
@@ -78,7 +81,10 @@ body,
   font-weight: 300;
   font-size: 15px;
   line-height: 18px;
-  margin-top: 17px;
+  margin-top: 14px;
+}
+.note-body::placeholder {
+  color: rgba(0, 0, 0, 0.98);
 }
 
 /* Grow wrap textarea start */

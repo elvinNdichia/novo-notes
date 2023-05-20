@@ -1,8 +1,33 @@
 import { Box } from "@mui/system";
 import { motion } from "framer-motion";
-import { NewActions } from "./NewActions";
+import { DeleteAction, DoneAction } from "./NoteActions";
+import {
+  AutoHeightTextareaBody,
+  AutoHeightTextareaTitle,
+} from "./AutoHeightTextarea";
+import { useState } from "react";
+import { BrainContext } from "../helpers/BrainContext";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export function NewNote() {
+  const navigate = useNavigate();
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+
+  const { submitNote } = React.useContext(BrainContext);
+
+  const onDone = () => {
+    if (title === "" && body === "") {
+      navigate("/");
+    }
+    const newNoteTitle = title === "" ? "Untitled Note" : title;
+    submitNote({ body, title: newNoteTitle });
+    navigate("/");
+  };
+
+  const onDeleteOrExit = () => {};
+
   return (
     <>
       <Box
@@ -12,7 +37,10 @@ export function NewNote() {
           justifyContent: "flex-end",
         }}
       >
-        <NewActions />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <DeleteAction onDeleteOrExit={onDeleteOrExit} />
+          <DoneAction onDone={onDone} />
+        </div>
       </Box>
       <Box
         sx={{
@@ -27,30 +55,8 @@ export function NewNote() {
             padding: "0 24px",
           }}
         >
-          <Box
-            className="note-title"
-            sx={{
-              display: "block",
-              color: "#8D8888",
-              border: "none",
-              minHeight: "auto",
-            }}
-            contentEditable
-          >
-            Title
-          </Box>
-          <Box
-            className="note-body"
-            sx={{
-              width: "100%",
-              minHeight: "80pxpx",
-              overflowX: "hidden",
-              overflowY: "auto",
-            }}
-            contentEditable
-          >
-            Body
-          </Box>
+          <AutoHeightTextareaTitle title={title} setTitle={setTitle} />
+          <AutoHeightTextareaBody body={body} setBody={setBody} />
         </div>
       </Box>
     </>
