@@ -15,6 +15,7 @@ import {
   doc,
   query,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 
 // User Context
@@ -27,17 +28,67 @@ function App() {
     photoURL: "",
     uid: "",
   });
-
+  const notesCollectionRef = collection(db, "novo-notes");
   // SignIn
   const signIn = async () => {
     try {
-      signInWithPopup(auth, provider).then((data) => {
-        const { email, displayName, photoURL, uid } = data.user;
-        setUserData({ ...userData, email, displayName, photoURL, uid });
-        localStorage.setItem("userData", JSON.stringify(data.user));
-      });
+      const data = await signInWithPopup(auth, provider);
+      const { email, displayName, photoURL, uid } = data.user;
+
+      // I want to add new notes for first time users.
+      console.log("Here is the data: ", data);
+      if (data.user.email) {
+        if (
+          data.user.additionalUserInfo &&
+          data.user.additionalUserInfo.isNewUser
+        ) {
+          console.log("Dis one na  new user oo");
+          // Add two new notes
+          try {
+            addDoc(notesCollectionRef, {
+              uid,
+              title: "Green Gigabytes",
+              body: "Computing can be greener than you think. Did you know data centers are being powered by renewable energy? Just imagine, your latest email might have been sent by the sun!",
+              time: serverTimestamp(),
+            });
+          } catch (err) {
+            console.error("Error with adding the todo", err);
+          }
+          try {
+            addDoc(notesCollectionRef, {
+              uid,
+              title: "Alien Encounter",
+              body:
+                "Met a Martian today." +
+                " They love peanut butter!" +
+                "They're bad at basketball." +
+                " Left in a shiny spaceship." +
+                "Mars needs peanut butter?",
+              time: serverTimestamp(),
+            });
+          } catch (err) {
+            console.error("Error with adding the todo", err);
+          }
+          try {
+            addDoc(notesCollectionRef, {
+              uid,
+              title: "Data Diet",
+              body: "Want to trim the digital fat? Think before you store. Remember, data storage also consumes energy. Go on a data diet today!",
+              time: serverTimestamp(),
+            });
+          } catch (err) {
+            console.error("Error with adding the todo", err);
+          }
+        }
+      } else console.log("Dis one no be new user oo");
+
+      //
+      setUserData({ ...userData, email, displayName, photoURL, uid });
+      localStorage.setItem("userData", JSON.stringify(data.user));
     } catch (e) {
       console.log("Error Signing in: ", e);
+      // This works but should be improved
+      alert("Error signing in. Please verify your connection and try again");
     }
   };
 
