@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { BrainContext } from "../helpers/BrainContext";
 import { Box, CircularProgress } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,10 +51,20 @@ export function Card({ id, title, body, time }) {
 }
 
 export function Cards() {
-  const { notes, getNotes, loading, search } = React.useContext(BrainContext);
+  const { notes, getNotes, createNotesIfNew, loading, search } =
+    React.useContext(BrainContext);
+
+  const hasCreatedNotes = useRef(false);
 
   useEffect(() => {
     getNotes();
+  }, []);
+
+  useEffect(() => {
+    if (!hasCreatedNotes.current) {
+      createNotesIfNew();
+      hasCreatedNotes.current = true;
+    }
   }, []);
 
   if (loading) {
