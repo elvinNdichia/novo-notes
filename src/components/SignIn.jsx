@@ -1,5 +1,6 @@
 import { Box } from "@mui/system";
 import { motion } from "framer-motion";
+import { SimpleBarTest } from "./SimpleBar";
 
 export function SignIn({ signIn }) {
   return (

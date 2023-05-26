@@ -40,6 +40,7 @@ export function Header() {
           height: "40px",
           border: "1px solid #eee",
           cursor: "pointer",
+          overflow: "hidden",
         }}
         onClick={() => {
           localStorage.clear();

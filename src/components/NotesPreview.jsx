@@ -3,6 +3,8 @@ import SearchBar from "./SearchBar";
 import { Cards } from "./Card";
 import { Link } from "react-router-dom";
 import { Header } from "./Header";
+import SimpleBar from "simplebar-react";
+import "simplebar-react/dist/simplebar.min.css";
 
 export function NotesPreview({ isRightOpen }) {
   return (
@@ -27,8 +29,8 @@ export function NotesPreview({ isRightOpen }) {
       </Box>
 
       <Box sx={{ position: "relative", willChange: "transform" }}>
-        <Box
-          sx={{
+        <SimpleBar
+          style={{
             height: "100%",
             overflow: "auto",
             display: "block",
@@ -68,7 +70,7 @@ export function NotesPreview({ isRightOpen }) {
               </svg>
             </Box>
           </Link>
-        </Box>
+        </SimpleBar>
       </Box>
     </Box>
   );
